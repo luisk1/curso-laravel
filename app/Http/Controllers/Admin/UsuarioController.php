@@ -49,7 +49,8 @@ class usuarioController extends Controller
         $data = new Usuario();
     	$data->cedula = $ced;
     	$data->usua_datos = $datos;
-    	$data->password = bcrypt($pas);
+        $data->password = bcrypt($pas);
+        $data->email = $req->get('email');
     	$data->save();
         $p = $data->toArray();
         if(Auth::check()){

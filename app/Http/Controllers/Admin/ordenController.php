@@ -91,10 +91,9 @@ class ordenController extends Controller
         //dd($orden_id);
         //$data = Ordenmodel::orderby('orden_id')->get();
         $data = Ordenmodel::find($id);
-        
-        $data->orden_numero = $req->get('val1');
-    	$data->orden_nombreproveedor = $req->get('val2');
-    	$data->save();
+        $data->orden = $req->get('val1');
+        $data->orden_nombreproveedor = $req->get('val2');
+        $data->save();
     	return $data;
     }
 
@@ -116,8 +115,9 @@ class ordenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function eliminar(Request $req)
+    public function eliminar(Request $req, $orden)
     {
-        $data = Ordenmodel::find($req->id)->delete();
+        //dd($orden);
+        $data = Ordenmodel::find($orden)->delete();
     }
 }

@@ -18,7 +18,11 @@ function ajaxRequest (url, data) {
         type: 'POST',
         data: data,
         success: function (respuesta) {
-            swal(respuesta.respuesta, 'Menu Rol', 'success');
+            if(respuesta.respuesta=='El rol se asigno correctamente'){
+                toastr.success(respuesta.respuesta, 'Menu Rol');
+            }else{
+                toastr.warning(respuesta.respuesta, 'Menu Rol');
+            }            
         }
     });
 }

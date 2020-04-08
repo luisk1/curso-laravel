@@ -39,11 +39,7 @@
               <div class="col-lg-3"></div>
               <div class="col-lg-6">
                 <button @click.prevent="crear" class="btn btn-success">Crear</button>
-                <button @click="buscar" class="btn btn-danger">Buscar</button>
-                <button type="submit" class="btn btn-success">Guardar</button>
-              </div>
-
-              
+                </div>
             </div>
           </div>
         </form>
@@ -54,7 +50,6 @@
                 <table class="table table-bordered table-hover table-striped">
                   <thead>
                     <tr>
-                        <th>ID OC</th>
                       <th>NUMERO DE OC</th>
                       <th>NOMBRE DEL PROVEEDOR</th>
                       <th>ACCIONES</th>
@@ -62,10 +57,9 @@
                     </tr>
                   </thead>
                   <tr v-for="item in datas" v-bind:key="item.orden_id">
-                    <td>{{item.id}}</td>
                     <td>{{item.orden}}</td>
                     <td>{{item.orden_nombreproveedor}}</td>
-                    <td id="show-modal" @click="showModal=true; setVal(item.id,item.orden_numero,item.orden_nombreproveedor)"  class="btn btn-info" ><span
+                    <td id="show-modal" @click="showModal=true; setVal(item.orden,item.orden_nombreproveedor)"  class="btn btn-info" ><span
                             class="glyphicon glyphicon-pencil"></span></td>
                             <td @click.prevent="deleteItem(item)" class="btn btn-danger"><span
                                 class="glyphicon glyphicon-trash"></span></td>
@@ -101,9 +95,7 @@
                         <modal v-if="showModal" @close="showModal=false">
                         <h3 slot="header">Edit Item</h3>
                         <div slot="body">
-                        <input type="hidden" disabled class="form-control" id="e_id" name="id"
-                                required  :value="this.e_id">
-                        NUMERO DE OC: <input type="number" class="form-control" id="e_numero" name="numero" required  :value="this.e_numero">
+                        NUMERO DE OC: <input disabled="true" type="number" class="form-control" id="e_numero" name="numero" required  :value="this.e_numero">
                         NOMBRE PROVEEDOR: <input type="text" class="form-control" id="e_nombrepro" name="nombre"
                         required  :value="this.e_nombrepro">
                             </div>
@@ -222,45 +214,27 @@ export default {
           swal("error", er, "error");
       });
     },
-    buscar: function() {
-        var i;
-var obj1 = {a: 1, b: 2, c: true};
-var obj2 = {c: true, b: 2, a: 1};
-for (i in obj1) {
-    console.assert(obj1[i] === obj2[i]);
-    console.log(i);
-}
-for (i in obj2) {
-    console.assert(obj1[i] === obj2[i]);
-}
-    },
-
+    
     editItem: function(){
     				var _this = this;
-                    var i_val = document.getElementById('e_id').value;
     		var n_val = document.getElementById('e_numero').value;
         var a_val = document.getElementById('e_nombrepro').value;
-        console.log(i_val);
-  axios.put('editarorden/' + i_val ,{val1: n_val, val2: a_val}).then(response=>{
+  axios.put('editarorden/' + n_val ,{val1: n_val, val2: a_val}).then(response=>{
                     this.cargar();
-                    _this.datos = response.data;
-                    //console.log(_this.datos);
     				_this.showModal=false
 
                     
     		});	
     	},
 
-    setVal(id,numero,nombre){
-            this.e_id = id;
+    setVal(numero,nombre){
             this.e_numero = numero;
             this.e_nombrepro = nombre;
-            console.log(this.e_id);
     },
     deleteItem: function deleteItem(item){
         var _this = this;
-        console.log(item);
-    		axios.post('eliminarorden/' + item.id).then(function(response){
+        console.log(item.orden);
+    		axios.post('eliminarorden/' + item.orden).then(function(response){
     				_this.cargar();
 
     		});	

@@ -77,17 +77,12 @@ export default {
       var ced = this.cedulas;
       var pas = this.pass;
       var _this = this;
-      
       var myString = JSON.stringify(input);
-      console.log(myString);
-      console.log(pas.pass);
-      console.log(ced);
-      console.log(ced.cedula);
-      axios.post('/guardar/' + myString + '/' + pas.pass +'/' + ced.cedula,input).then(function(response) {
-          _this.datos = { 'nombre': '', 'apellido': '', 'email': '', 'password': '' };
+      axios.post('crearusuario/' + myString + '/' + pas.pass +'/' + ced.cedula,input).then(function(response) {
+          _this.datos = { 'nombre': '', 'apellido': '', 'email': '' };
           _this.cedulas =  { 'cedula': '' } ;
           _this.pass = { 'pass': '' };
-          console.log("hecho");
+          toastr.success('usuario creado con exito');
         });
     },
     buscar: function(){

@@ -135,7 +135,9 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                <a href="{{route('login')}}" class="btn btn-default btn-flat">Login</a>
+                  @guest
+                  <a href="{{route('login')}}" class="btn btn-default btn-flat">Login</a> 
+                  @endguest                
                 </div>
                 <div class="pull-right">
                 <a href="{{route('logout')}}" class="btn btn-default btn-flat">Salir</a>
