@@ -21,7 +21,8 @@ class CrearTablaCita extends Migration
             $table->date('cita_fecha');
             $table->string('cita_hora');
             $table->string('cita_estado');
-            $table->dateTime('cita_recibido')->nullable();
+            $table->timestamp('cita_recibido')->nullable();
+            $table->timestamp('cita_terminado')->nullable();
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

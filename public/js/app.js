@@ -1942,6 +1942,151 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/atendercita.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/atendercita.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      valor: true,
+      citasasignadas: [],
+      citasterminar: []
+    };
+  },
+  mounted: function mounted() {
+    console.log("Component mounted.");
+    this.cargar();
+  },
+  methods: {
+    atender: function atender(item) {
+      var _this = this;
+
+      axios.put("atendercita", item).then(function (response) {
+        toastr.success("cita atendida con exito");
+        console.log(response.data);
+
+        _this.cargar();
+      });
+    },
+    terminar: function terminar(item) {
+      var _this = this;
+
+      axios.put("terminarcita", item).then(function (response) {
+        toastr.success("cita terminada con exito");
+        console.log(response.data);
+
+        _this.cargaratendido();
+      });
+    },
+    redirect: function redirect() {
+      var _this = this;
+
+      _this.valor = false;
+
+      var _this = this;
+    },
+    redirect1: function redirect1() {
+      var _this = this;
+
+      _this.valor = true;
+
+      _this.cargaratendido();
+    },
+    cargar: function cargar() {
+      var _this = this;
+
+      axios.get("citaasignadamostrar").then(function (response) {
+        _this.citasasignadas = response.data;
+        console.log(_this.citasasignadas);
+      });
+    },
+    cargaratendido: function cargaratendido() {
+      var _this = this;
+
+      axios.get("citaatendidamostrar").then(function (response) {
+        _this.citasterminar = response.data;
+        console.log(_this.citasterminar);
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/crearusuarioComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/crearusuarioComponent.vue?vue&type=script&lang=js& ***!
@@ -38261,6 +38406,241 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/atendercita.vue?vue&type=template&id=2d6e1c4d&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/atendercita.vue?vue&type=template&id=2d6e1c4d& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-lg-12" }, [
+      _vm.valor
+        ? _c("div", { staticClass: "box box-danger" }, [
+            _c("div", { staticClass: "box-header with-border" }, [
+              _c("h3", { staticClass: "box-title" }, [_vm._v("Atender Cita")]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-info btn-sm pull-right",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.redirect($event)
+                    }
+                  }
+                },
+                [_vm._v("Terminar Cita")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "div",
+                { staticClass: "box-body table-responsive no-padding" },
+                [
+                  _c(
+                    "table",
+                    {
+                      staticClass:
+                        "table table-bordered table-hover table-striped"
+                    },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _vm._l(_vm.citasasignadas, function(item) {
+                        return _c("tr", { key: item.orden_id }, [
+                          _c("td", { attrs: { align: "center" } }, [
+                            _vm._v(_vm._s(item.cita_fecha))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { attrs: { align: "center" } }, [
+                            _vm._v(_vm._s(item.cita_hora))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { attrs: { align: "center" } }, [
+                            _vm._v(_vm._s(item.cita_estado))
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              staticClass: "btn btn-success",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.atender(item)
+                                }
+                              }
+                            },
+                            [
+                              _c("span", {
+                                staticClass: "glyphicon glyphicon-pencil"
+                              })
+                            ]
+                          )
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("tbody")
+                    ],
+                    2
+                  )
+                ]
+              )
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.valor
+        ? _c("div", { staticClass: "box box-danger" }, [
+            _c("div", { staticClass: "box-header with-border" }, [
+              _c("h3", { staticClass: "box-title" }, [_vm._v("Terminar Cita")]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-info btn-sm pull-right",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.redirect1($event)
+                    }
+                  }
+                },
+                [_vm._v("Atender Cita")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "div",
+                { staticClass: "box-body table-responsive no-padding" },
+                [
+                  _c(
+                    "table",
+                    {
+                      staticClass:
+                        "table table-bordered table-hover table-striped"
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _vm._l(_vm.citasterminar, function(item) {
+                        return _c("tr", { key: item.orden_id }, [
+                          _c("td", { attrs: { align: "center" } }, [
+                            _vm._v(_vm._s(item.cita_fecha))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { attrs: { align: "center" } }, [
+                            _vm._v(_vm._s(item.cita_hora))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { attrs: { align: "center" } }, [
+                            _vm._v(_vm._s(item.cita_estado))
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              staticClass: "btn btn-success",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.terminar(item)
+                                }
+                              }
+                            },
+                            [
+                              _c("span", {
+                                staticClass: "glyphicon glyphicon-pencil"
+                              })
+                            ]
+                          )
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("tbody")
+                    ],
+                    2
+                  )
+                ]
+              )
+            ])
+          ])
+        : _vm._e()
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticStyle: { "text-align": "center" } }, [
+          _vm._v("FECHA CITA")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { "text-align": "center" } }, [
+          _vm._v("HORA CITA")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { "text-align": "center" } }, [
+          _vm._v("ESTADO CITA")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { "text-align": "center" } }, [
+          _vm._v("ATENDER CITA")
+        ]),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticStyle: { "text-align": "center" } }, [
+          _vm._v("FECHA CITA")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { "text-align": "center" } }, [
+          _vm._v("HORA CITA")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { "text-align": "center" } }, [
+          _vm._v("ESTADO CITA")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { "text-align": "center" } }, [
+          _vm._v("TERMINAR CITA")
+        ]),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/crearusuarioComponent.vue?vue&type=template&id=5f28188a&":
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/crearusuarioComponent.vue?vue&type=template&id=5f28188a& ***!
@@ -54234,6 +54614,7 @@ Vue.component('cita', __webpack_require__(/*! ./components/gestionarcita.vue */ 
 Vue.component('ordencita', __webpack_require__(/*! ./components/ordenxcita.vue */ "./resources/js/components/ordenxcita.vue")["default"]);
 Vue.component('crearusu', __webpack_require__(/*! ./components/gestionarusuario.vue */ "./resources/js/components/gestionarusuario.vue")["default"]);
 Vue.component('usuario', __webpack_require__(/*! ./components/crearusuarioComponent.vue */ "./resources/js/components/crearusuarioComponent.vue")["default"]);
+Vue.component('atendercita', __webpack_require__(/*! ./components/atendercita.vue */ "./resources/js/components/atendercita.vue")["default"]);
 Vue.config.devtools = false;
 Vue.config.productionTip = false;
 new Vue({
@@ -54339,6 +54720,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginComponent_vue_vue_type_template_id_4d2414bf___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginComponent_vue_vue_type_template_id_4d2414bf___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/atendercita.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/atendercita.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _atendercita_vue_vue_type_template_id_2d6e1c4d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./atendercita.vue?vue&type=template&id=2d6e1c4d& */ "./resources/js/components/atendercita.vue?vue&type=template&id=2d6e1c4d&");
+/* harmony import */ var _atendercita_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./atendercita.vue?vue&type=script&lang=js& */ "./resources/js/components/atendercita.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _atendercita_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _atendercita_vue_vue_type_template_id_2d6e1c4d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _atendercita_vue_vue_type_template_id_2d6e1c4d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/atendercita.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/atendercita.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/atendercita.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_atendercita_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./atendercita.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/atendercita.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_atendercita_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/atendercita.vue?vue&type=template&id=2d6e1c4d&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/atendercita.vue?vue&type=template&id=2d6e1c4d& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_atendercita_vue_vue_type_template_id_2d6e1c4d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./atendercita.vue?vue&type=template&id=2d6e1c4d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/atendercita.vue?vue&type=template&id=2d6e1c4d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_atendercita_vue_vue_type_template_id_2d6e1c4d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_atendercita_vue_vue_type_template_id_2d6e1c4d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

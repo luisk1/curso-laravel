@@ -66,6 +66,11 @@ Route::get('buscarfecha/{fecha}','Admin\citasController@buscarfecha');
 Route::get('ordendisponible','Admin\citasController@mostrar');
 Route::get('gestionarordencita','Admin\ordencitaController@index');
 Route::get('citadisponible','Admin\ordencitaController@mostrarcita');
+Route::get('citaasignada','Admin\ordencitaController@cargarcitaasignada');
+Route::get('citaasignadamostrar','Admin\ordencitaController@mostrarcitaasignada');
+Route::put('atendercita', 'Admin\ordencitaController@atender');
+Route::get('citaatendidamostrar','Admin\ordencitaController@mostrarcitaatendida');
+Route::put('terminarcita', 'Admin\ordencitaController@terminar');
 /*RUTAS DE USUARIO*/
 Route::get('gestionarusuario', 'Admin\UsuarioController@index')->name('usuario');
 Route::post('crearusuario/{datos}/{pass}/{cedula}', 'Admin\UsuarioController@guardar')->name('crear_usuario');

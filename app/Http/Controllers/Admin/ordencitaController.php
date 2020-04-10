@@ -26,4 +26,35 @@ class ordencitaController extends Controller
         $dat = $citas->toArray();
         return $dat;
     }
+    public function mostrarcitaasignada()
+    {
+        $citas = Cita::where('cita_estado','asignada')->get();
+        return $citas;
+    }
+    public function mostrarcitaatendida()
+    {
+        $citas = Cita::where('cita_estado','atendiendo')->get();
+        return $citas;
+    }
+    public function cargarcitaasignada()
+    {
+        return view('cita.atendercita');
+    }
+    public function atender(Request $request )
+    {
+        $date = Carbon::now();
+        $date = $date->format('yy-m-d h:i:s');
+        $data = Cita::find($request->get('id'));        
+        $data->cita_estado = 'atendiendo';
+        $data->cita_recibido = $date;
+    	$data->save();
+    	return $data;
+    }
+    public function terminar(Request $request )
+    {
+        $data = Cita::find($request->get('id'));        
+        $data->cita_estado = 'atendida';
+        $data->save();
+    	return $data;
+    }
 }
