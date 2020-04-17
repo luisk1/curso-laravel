@@ -72,9 +72,14 @@ Route::put('atendercita', 'Admin\ordencitaController@atender');
 Route::get('citaatendidamostrar','Admin\ordencitaController@mostrarcitaatendida');
 Route::put('terminarcita', 'Admin\ordencitaController@terminar');
 /*RUTAS DE USUARIO*/
-Route::get('gestionarusuario', 'Admin\UsuarioController@index')->name('usuario');
-Route::post('crearusuario/{datos}/{pass}/{cedula}', 'Admin\UsuarioController@guardar')->name('crear_usuario');
+        Route::get('gestionarusuario', 'Admin\UsuarioController@index')->name('usuario');
+        Route::get('actualizarusuario', 'Admin\UsuarioController@indexes');
+        Route::get('cargarusuario', 'Admin\UsuarioController@verificar');
+        Route::post('crearusuario/{datos}/{pass}/{cedula}', 'Admin\UsuarioController@guardar')->name('crear_usuario');
+        Route::get('verificarsesion', 'Admin\UsuarioController@verificasesion');
 Route::post('usuario', 'Admin\UsuarioController@guardar')->name('guardar_usuario');
-Route::get('usuario/{id}/editar', 'Admin\UsuarioController@editar')->name('editar_usuario');
+Route::get('editarusuario/{id}', 'Admin\UsuarioController@editar')->name('editar_usuario');
 Route::put('usuario/{id}', 'Admin\UsuarioController@actualizar')->name('actualizar_usuario');
 Route::delete('usuario/{id}', 'Admin\UsuarioController@eliminar')->name('eliminar_usuario');    
+/*RUTAS REPORTES*/
+Route::get('reportes', 'Admin\reportesController@index')->name('reportes');

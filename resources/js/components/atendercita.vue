@@ -99,8 +99,6 @@ export default {
     redirect: function redirect() {
       var _this = this;
       _this.valor = false;
-      var _this = this;
-      
     },
     redirect1: function redirect1() {
       var _this = this;

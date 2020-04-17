@@ -18,9 +18,8 @@ class usuarioController extends Controller
      */
     public function index()
     {
-        if(Auth::check()){
             return view('admin.usuario.usuario');
-        } 
+         
     }
     public function indexes()
     {
@@ -36,6 +35,10 @@ class usuarioController extends Controller
     {
         $data = Usuario::where('id',session()->get('id'))->get();
         return($data);
+    }
+    public function verificasesion()
+    {
+        return(session()->get('nombre'));
     }
 
     /**

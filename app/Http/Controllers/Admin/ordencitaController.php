@@ -52,8 +52,11 @@ class ordencitaController extends Controller
     }
     public function terminar(Request $request )
     {
+        $date = Carbon::now();
+        $date = $date->format('yy-m-d h:i:s');
         $data = Cita::find($request->get('id'));        
         $data->cita_estado = 'atendida';
+        $data->cita_terminado = $date;
         $data->save();
     	return $data;
     }

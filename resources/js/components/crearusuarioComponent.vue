@@ -5,7 +5,7 @@
         <div class="box-header with-border">
           <h3 class="box-title">Gestionar Usuario</h3>
         </div>
-        <form id="form-general"  class="form-horizontal" v-if="!verifi">
+        <form id="form-general"  class="form-horizontal">
           <div class="box-body">
             <div class="form-group">
               <label for="nombre" class="col-lg-3 control-label requerido">Nombre</label>
@@ -29,6 +29,12 @@
               <label for="correo" class="col-lg-3 control-label">Correo</label>
               <div class="col-lg-8">
                 <input type="email" name="email" id="email" class="form-control"  v-model="datos.email"/>
+              </div>
+            </div>
+            <div class="form-group" v-if="verifi">
+              <label for="transportadora" class="col-lg-3 control-label">Transportadora</label>
+              <div class="col-lg-8">
+                <input type="text" name="transportadora" id="transportadora" class="form-control"  v-model="datos.transportadora"/>
               </div>
             </div>
             <div class="form-group">
@@ -56,8 +62,7 @@
 export default {
   data() {
     return {
-      datos: { 'nombre': '', 'apellido': '', 'email': '' },
-      showModal: false,
+      datos: { 'nombre': '', 'apellido': '', 'email': '', 'transportadora': '' },
       actualiza: false,
       verifi: false,
       cedulas: { 'cedula': '' },
@@ -69,15 +74,16 @@ export default {
   },
   mounted() {
     console.log("Component mounted.");
+    this.verifica();
   },
   methods: {
     crear: function() {
-      console.log("ingreso111");
       var input = this.datos;
       var ced = this.cedulas;
       var pas = this.pass;
-      var _this = this;
-      var myString = JSON.stringify(input);
+      var _this = this;      
+       var myString = JSON.stringify(input);
+      console.log(input);
       axios.post('crearusuario/' + myString + '/' + pas.pass +'/' + ced.cedula,input).then(function(response) {
           _this.datos = { 'nombre': '', 'apellido': '', 'email': '' };
           _this.cedulas =  { 'cedula': '' } ;
@@ -85,21 +91,17 @@ export default {
           toastr.success('usuario creado con exito');
         });
     },
-    buscar: function(){
-        //console.log("ingreso111");
-        //var _this = this;
-        //var input = this.datos;
-        //var pa = this.pass;
-        //var cedula = document.getElementById('cedula').value;
-        //console.log(pa.pass);
-        //console.log(input.cedula);
-    		//axios.get('/buscar/'+ cedula +'/'+ pa.pass).then(function (response){
-          //console.log(response.data);
-    				//_this.datas = response.data;
-    		
-        //});--->
-        //this.actualiza=true;
-      },
+    verifica: function(){
+      var _this = this;
+      axios.get('verificarsesion').then(function(response){
+          if(response.data!=''){
+            _this.verifi = false;
+          }else{
+            _this.verifi= true;
+          }
+      });
+    }
+    
       
   }, 
 }

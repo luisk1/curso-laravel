@@ -14,6 +14,7 @@ Vue.component('ordencita',require('./components/ordenxcita.vue').default);
 Vue.component('crearusu',require('./components/gestionarusuario.vue').default);
 Vue.component('usuario',require('./components/crearusuarioComponent.vue').default);
 Vue.component('atendercita',require('./components/atendercita.vue').default);
+Vue.component('reportes',require('./components/reportes.vue').default);
 
 Vue.config.devtools = false
 Vue.config.productionTip = false
