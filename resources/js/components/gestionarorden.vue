@@ -206,6 +206,7 @@ export default {
       var input = this.datos;
       var _this = this;
       var myString = JSON.stringify(input);
+      console.log(input);
       axios.post("guardarorden/",{val1: input.orden, val2: input.nombreproveedor}).then(function(response) {
        swal("mensaje","OC creada con exito","success");
        _this.cargar();

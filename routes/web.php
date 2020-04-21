@@ -54,7 +54,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::post('permiso-rol', 'PermisoRolController@guardar')->name('guardar_permiso_rol');
 });
 Route::get('gestionarorden','Admin\ordenController@index');
-Route::post('/guardarorden/','Admin\ordenController@guardar');
+Route::post('guardarorden/','Admin\ordenController@guardar');
 Route::post('eliminarorden/{id}','Admin\ordenController@eliminar');
 Route::get('cargarorden','Admin\ordenController@mostrar');
 Route::put('/editarorden/{id}', 'Admin\ordenController@editar');
@@ -75,11 +75,11 @@ Route::put('terminarcita', 'Admin\ordencitaController@terminar');
         Route::get('gestionarusuario', 'Admin\UsuarioController@index')->name('usuario');
         Route::get('actualizarusuario', 'Admin\UsuarioController@indexes');
         Route::get('cargarusuario', 'Admin\UsuarioController@verificar');
-        Route::post('crearusuario/{datos}/{pass}/{cedula}', 'Admin\UsuarioController@guardar')->name('crear_usuario');
+        Route::post('crearusuario', 'Admin\UsuarioController@guardar');
+        Route::post('crearusua', 'Admin\UsuarioController@guardard');
         Route::get('verificarsesion', 'Admin\UsuarioController@verificasesion');
-Route::post('usuario', 'Admin\UsuarioController@guardar')->name('guardar_usuario');
-Route::get('editarusuario/{id}', 'Admin\UsuarioController@editar')->name('editar_usuario');
-Route::put('usuario/{id}', 'Admin\UsuarioController@actualizar')->name('actualizar_usuario');
-Route::delete('usuario/{id}', 'Admin\UsuarioController@eliminar')->name('eliminar_usuario');    
+
+        Route::put('editarusuario/{id}', 'Admin\UsuarioController@editar')->name('editar_usuario');
+
 /*RUTAS REPORTES*/
 Route::get('reportes', 'Admin\reportesController@index')->name('reportes');

@@ -2,7 +2,38 @@ require('./bootstrap');
 
 
 window.Vue = require('vue');
+import BootstrapVue from "bootstrap-vue";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+Vue.use(BootstrapVue);
 import swal from 'sweetalert';
+import { ValidationProvider } from 'vee-validate';
+import { extend } from 'vee-validate';
+import { required, email, alpha, alpha_dash, numeric, alpha_spaces } from 'vee-validate/dist/rules';
+extend('email', {
+   ...email,
+      message: 'favor introduzca un correo valido'
+});
+extend('required', {
+  ...required,
+  message: 'este campo es requerido'
+});
+extend('alpha', {
+   ...alpha,
+      message: 'favor solo introducir letras'
+});
+extend('alpha_dash', {
+   ...alpha_dash,
+      message: 'No estan permitidos caracteres especiales solo letras y numeros'
+});
+extend('numeric', {
+   ...numeric,
+      message: 'favor solo introducir numeros'
+});
+extend('alpha_spaces', {
+   ...email,
+      message: 'solo se aceptan letras'
+});
+Vue.component('ValidationProvider',ValidationProvider);
 Vue.component('crearusu',require('./components/crearusuarioComponent.vue').default);
 Vue.component('login',require('./components/crearusuarioComponent.vue').default);
 Vue.component('prueba',require('./components/pruebaComponent.vue').default);

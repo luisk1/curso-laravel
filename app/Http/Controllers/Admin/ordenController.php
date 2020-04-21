@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Ordenmodel;
 use Illuminate\Http\Request;
 
+
 class ordenController extends Controller
 {
      /**
@@ -23,9 +24,9 @@ class ordenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -41,7 +42,6 @@ class ordenController extends Controller
             return response()->json(['respuesta'=>'OC ya existe, favor ingrese otro numero de OC'],400);
         }else{
             $data = new Ordenmodel();
-    	//$data->pers_num_documento = $id;
     	$data->orden = $req['val1'];
     	$data->orden_nombreproveedor = $req['val2'];
     	$data->save();

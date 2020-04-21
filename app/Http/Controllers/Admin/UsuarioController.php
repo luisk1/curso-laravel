@@ -8,6 +8,7 @@ use App\Models\Seguridad\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Validacionusuario;
 
 class usuarioController extends Controller
 {
@@ -47,14 +48,21 @@ class usuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $req,$datos,$pas,$ced)
-    {        
+    public function guardardos(Request $request){
+        $dat = $request->get('usua_datos');
+        
+       
+    }
+
+    public function guardar(Validacionusuario $req)
+    {     
+        $dat = $req->get('usua_datos');   
         $data = new Usuario();
-    	$data->cedula = $ced;
-    	$data->usua_datos = $datos;
-        $data->password = bcrypt($pas);
-        $data->email = $req->get('email');
-    	$data->save();
+    	$data->cedula = $req->get('cedula');
+        $data->usua_datos = \json_encode($req->get('usua_datos'));
+        $data->email = $dat['email'];
+        $data->password = bcrypt($req->get('password'));        
+        $data->save();
         $p = $data->toArray();
         if(Auth::check()){
             $dat = new usuariorol();
@@ -71,6 +79,7 @@ class usuarioController extends Controller
             $dat->save();
             return $data;
         }
+        //return response()->json('errors');
     }
 
     /**
@@ -96,9 +105,11 @@ class usuarioController extends Controller
      */
     public function editar(Request $req,$id)
     {
+        $dat = $req->get('usua_datos');
         $data = Usuario::find($id);        
-        $data->cedula = $req->get('val1');
-    	$data->usua_datos = $req->get('val2');
+        $data->cedula = $req->get('cedula');
+        $data->usua_datos = $req->get('usua_datos');
+        $data->email = $dat['email'];
     	$data->save();
     	return $data;
     }
