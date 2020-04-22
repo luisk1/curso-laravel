@@ -48,11 +48,7 @@ class usuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardardos(Request $request){
-        $dat = $request->get('usua_datos');
-        
-       
-    }
+   
 
     public function guardar(Validacionusuario $req)
     {     
@@ -91,9 +87,7 @@ class usuarioController extends Controller
     public function buscar($id,$pa)
     {
         $ide = bcryp($pa);
-        //dd($ide);
-        $data = Usuario::where('usua_pass',$ide)->get();
-        //$data = Usuarioprueba::where('usua_pass', '$ide')->get();        
+        $data = Usuario::where('usua_pass',$ide)->get();        
         return $data;
     }
 

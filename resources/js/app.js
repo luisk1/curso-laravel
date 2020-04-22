@@ -30,8 +30,8 @@ extend('numeric', {
       message: 'favor solo introducir numeros'
 });
 extend('alpha_spaces', {
-   ...email,
-      message: 'solo se aceptan letras'
+   ...alpha_spaces,
+      message: 'solo se aceptan letras y espacios'
 });
 Vue.component('ValidationProvider',ValidationProvider);
 Vue.component('crearusu',require('./components/crearusuarioComponent.vue').default);

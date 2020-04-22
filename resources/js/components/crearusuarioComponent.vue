@@ -175,8 +175,6 @@ export default {
       var _this = this;
       _this.errores = {};
       _this.dismissCountDown = 7;
-      var myString = JSON.stringify(_this.datos);
-      console.log(input);
       axios
         .post("crearusuario", {
           "cedula": input.cedula,

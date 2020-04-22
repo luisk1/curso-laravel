@@ -76,7 +76,7 @@
     <script src="{{asset("assets/$theme/dist/js/demo.js")}}"></script>
     <script src="{{asset("assets/js/scripts.js")}}"></script>
     <script src="{{asset("assets/js/funciones.js")}}"></script>
-
+    
     @yield("scripts")
 </body>
 

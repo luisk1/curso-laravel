@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Ordenmodel;
 use Illuminate\Http\Request;
+use App\Http\Requests\Validacionorden;
 
 
 class ordenController extends Controller
@@ -35,18 +36,20 @@ class ordenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $req)
+    public function guardar(Validacionorden $req)
     {
-        $dat = Ordenmodel::where('orden',$req['val1'])->get();
+        $dat = Ordenmodel::where('orden',$req['orden'])->get();
         if($dat->isNotEmpty()){
             return response()->json(['respuesta'=>'OC ya existe, favor ingrese otro numero de OC'],400);
-        }else{
-            $data = new Ordenmodel();
-    	$data->orden = $req['val1'];
-    	$data->orden_nombreproveedor = $req['val2'];
+        } elseif ($dat->isEmpty()) {
+        $data = new Ordenmodel();
+    	$data->orden = $req['orden'];
+    	$data->orden_nombreproveedor = $req['orden_nombreproveedor'];
     	$data->save();
-        return response()->json(['respuesta'=>'OC creada'],200);
-        }        
+        return $data;
+        }else{
+            return response()->json(['respuesta'=>'error']);
+        }       
     }
 
     /**
@@ -66,9 +69,8 @@ class ordenController extends Controller
 
 
     public function mostrar(Request $req)
-    {      
-        $data = Ordenmodel::orderby('orden')->paginate(5);      
-    	return [
+    {      $data = Ordenmodel::select('ordencompra.*')->leftJoin('citaxorden', 'ordencompra.orden', '=', 'citaxorden.citaorden')->whereNull('citaxorden.citaorden')->paginate(5); 
+        return [
             'pagination'=> [
                 'total' => $data->total(),
                 'pagina_actual' => $data->currentPage(),

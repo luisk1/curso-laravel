@@ -54,7 +54,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::post('permiso-rol', 'PermisoRolController@guardar')->name('guardar_permiso_rol');
 });
 Route::get('gestionarorden','Admin\ordenController@index');
-Route::post('guardarorden/','Admin\ordenController@guardar');
+Route::post('guardarorden','Admin\ordenController@guardar');
 Route::post('eliminarorden/{id}','Admin\ordenController@eliminar');
 Route::get('cargarorden','Admin\ordenController@mostrar');
 Route::put('/editarorden/{id}', 'Admin\ordenController@editar');
@@ -76,9 +76,7 @@ Route::put('terminarcita', 'Admin\ordencitaController@terminar');
         Route::get('actualizarusuario', 'Admin\UsuarioController@indexes');
         Route::get('cargarusuario', 'Admin\UsuarioController@verificar');
         Route::post('crearusuario', 'Admin\UsuarioController@guardar');
-        Route::post('crearusua', 'Admin\UsuarioController@guardard');
         Route::get('verificarsesion', 'Admin\UsuarioController@verificasesion');
-
         Route::put('editarusuario/{id}', 'Admin\UsuarioController@editar')->name('editar_usuario');
 
 /*RUTAS REPORTES*/
